@@ -246,6 +246,7 @@ class ChexnetTrainer ():
             
             #separate results for Pneumonia
             results.append(i, outMean.data[0][6])
+            print(outMean.data)
             
             outPRED = torch.cat((outPRED, outMean.data), 0)
 
