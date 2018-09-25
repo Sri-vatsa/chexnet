@@ -246,10 +246,11 @@ class ChexnetTrainer ():
             
             #separate results for Pneumonia
             results.append((i, outMean.data[0][6]))
-            print(outMean.data)
             
             outPRED = torch.cat((outPRED, outMean.data), 0)
 
+        print("Probability of Pneumonia:")
+        print (results)
         #aurocIndividual = ChexnetTrainer.computeAUROC(outGT, outPRED, nnClassCount)
         #aurocMean = np.array(aurocIndividual).mean()
         
