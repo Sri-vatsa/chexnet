@@ -223,7 +223,7 @@ class ChexnetTrainer ():
         transformSequence=transforms.Compose(transformList)
         
         datasetTest = DatasetGenerator(pathImageDirectory=pathDirData, pathDatasetFile=pathFileTest, transform=transformSequence)
-        dataLoaderTest = DataLoader(dataset=datasetTest, batch_size=trBatchSize, num_workers=1, shuffle=False, pin_memory=True)
+        dataLoaderTest = DataLoader(dataset=datasetTest, batch_size=trBatchSize, num_workers=2, shuffle=False, pin_memory=True)
         
         outGT = torch.FloatTensor().cuda()
         outPRED = torch.FloatTensor().cuda()
@@ -244,13 +244,13 @@ class ChexnetTrainer ():
             
             outPRED = torch.cat((outPRED, outMean.data), 0)
 
-        aurocIndividual = ChexnetTrainer.computeAUROC(outGT, outPRED, nnClassCount)
-        aurocMean = np.array(aurocIndividual).mean()
+        #aurocIndividual = ChexnetTrainer.computeAUROC(outGT, outPRED, nnClassCount)
+        #aurocMean = np.array(aurocIndividual).mean()
         
-        print ('AUROC mean ', aurocMean)
+        #print ('AUROC mean ', aurocMean)
         
-        for i in range (0, len(aurocIndividual)):
-            print (CLASS_NAMES[i], ' ', aurocIndividual[i])
+        #for i in range (0, len(aurocIndividual)):
+        #    print (CLASS_NAMES[i], ' ', aurocIndividual[i])
         
      
         return
