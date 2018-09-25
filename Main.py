@@ -65,7 +65,7 @@ def runTest():
     nnArchitecture = 'DENSE-NET-121'
     nnIsTrained = True
     nnClassCount = 14
-    trBatchSize = 16
+    trBatchSize = 1
     imgtransResize = 256
     imgtransCrop = 224
     
