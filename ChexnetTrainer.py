@@ -229,6 +229,8 @@ class ChexnetTrainer ():
         outPRED = torch.FloatTensor().cuda()
        
         model.eval()
+
+        results = []
         
         for i, (input, target) in enumerate(dataLoaderTest):
             
@@ -242,9 +244,10 @@ class ChexnetTrainer ():
             out = model(varInput)
             outMean = out.view(bs, n_crops, -1).mean(1)
             
+            #separate results for Pneumonia
+            results.append(i, outMean.data[6])
+            
             outPRED = torch.cat((outPRED, outMean.data), 0)
-
-            print (i, outPRED)
 
         #aurocIndividual = ChexnetTrainer.computeAUROC(outGT, outPRED, nnClassCount)
         #aurocMean = np.array(aurocIndividual).mean()
