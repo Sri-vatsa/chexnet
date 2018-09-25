@@ -245,7 +245,7 @@ class ChexnetTrainer ():
             outMean = out.view(bs, n_crops, -1).mean(1)
             
             #separate results for Pneumonia
-            results.append(i, outMean.data[0][6])
+            results.append((i, outMean.data[0][6]))
             print(outMean.data)
             
             outPRED = torch.cat((outPRED, outMean.data), 0)
